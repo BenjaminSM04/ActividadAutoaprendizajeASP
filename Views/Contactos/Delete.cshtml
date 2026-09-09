@@ -1,0 +1,27 @@
+@model Contacto
+@{
+    ViewData["Title"] = "Eliminar contacto";
+}
+
+<div class="content-width">
+    <h1 class="h3">Eliminar contacto</h1>
+
+    <div class="alert alert-warning">
+        ¿Estás seguro de que deseas eliminar este contacto? Esta acción no se puede deshacer.
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <h2 class="h5">@Model.NombreCompleto</h2>
+            <p class="mb-1"><strong>Empresa:</strong> @Model.Empresa</p>
+            <p class="mb-1"><strong>Teléfono:</strong> @Model.Telefono</p>
+            <p class="mb-0"><strong>Correo:</strong> @Model.Correo</p>
+        </div>
+    </div>
+
+    <form asp-action="Delete" method="post" class="d-flex justify-content-end gap-2 mt-3">
+        <input type="hidden" asp-for="Id" />
+        <a class="btn btn-outline-secondary" asp-action="Index">Cancelar</a>
+        <button class="btn btn-danger" type="submit">Eliminar</button>
+    </form>
+</div>

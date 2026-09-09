@@ -1,0 +1,13 @@
+**/.dockerignore
+**/.git
+**/.gitignore
+**/.vs
+**/.vscode
+**/bin
+**/obj
+**/*.db
+**/*.db-shm
+**/*.db-wal
+**/*.user
+**/*.suo
+README.md

@@ -1,0 +1,92 @@
+@model IReadOnlyList<Contacto>
+@{
+    ViewData["Title"] = "Contactos";
+    var buscar = ViewData["Buscar"] as string;
+}
+
+<div class="d-flex flex-column flex-md-row justify-content-between align-items-md-center gap-3 mb-4">
+    <div>
+        <h1 class="h2 mb-1">Vault Electrónico de Contactos</h1>
+        <p class="text-muted mb-0">Administra los contactos de tu agenda personal.</p>
+    </div>
+    <a class="btn btn-primary" asp-action="Create">Nuevo contacto</a>
+</div>
+
+@if (TempData["Mensaje"] is string mensaje)
+{
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        @mensaje
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Cerrar"></button>
+    </div>
+}
+
+<form asp-action="Index" method="get" class="row g-2 mb-4" role="search">
+    <div class="col-sm-9 col-md-6">
+        <input class="form-control" type="search" name="buscar" value="@buscar"
+               placeholder="Buscar por nombre o apellido" aria-label="Buscar contactos" />
+    </div>
+    <div class="col-auto">
+        <button class="btn btn-outline-primary" type="submit">Buscar</button>
+    </div>
+    @if (!string.IsNullOrWhiteSpace(buscar))
+    {
+        <div class="col-auto">
+            <a class="btn btn-outline-secondary" asp-action="Index">Limpiar</a>
+        </div>
+    }
+</form>
+
+<div class="d-flex justify-content-between align-items-center mb-2">
+    <h2 class="h5 mb-0">Lista de contactos</h2>
+    <span class="text-muted small">@Model.Count @(Model.Count == 1 ? "contacto" : "contactos")</span>
+</div>
+
+@if (Model.Count > 0)
+{
+    <div class="table-responsive bg-white border rounded">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Contacto</th>
+                    <th>Empresa</th>
+                    <th>Teléfono</th>
+                    <th>Correo</th>
+                    <th class="text-end">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var contacto in Model)
+                {
+                    <tr>
+                        <td>
+                            <div class="d-flex align-items-center gap-2">
+                                <span class="contact-avatar">@contacto.Iniciales</span>
+                                <span class="fw-semibold">@contacto.NombreCompleto</span>
+                            </div>
+                        </td>
+                        <td>@contacto.Empresa</td>
+                        <td>@contacto.Telefono</td>
+                        <td><a href="mailto:@contacto.Correo">@contacto.Correo</a></td>
+                        <td class="text-end text-nowrap">
+                            <a class="btn btn-sm btn-outline-secondary" asp-action="Details" asp-route-id="@contacto.Id">Ver</a>
+                            <a class="btn btn-sm btn-outline-primary" asp-action="Edit" asp-route-id="@contacto.Id">Editar</a>
+                            <a class="btn btn-sm btn-outline-danger" asp-action="Delete" asp-route-id="@contacto.Id">Eliminar</a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <div class="alert alert-light border text-center py-4">
+        <h3 class="h5">No se encontraron contactos</h3>
+        <p class="text-muted mb-3">
+            @(string.IsNullOrWhiteSpace(buscar)
+                ? "Agrega un contacto para comenzar."
+                : $"No hay resultados para «{buscar}».")
+        </p>
+        <a class="btn btn-primary" asp-action="Create">Nuevo contacto</a>
+    </div>
+}

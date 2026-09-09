@@ -1,0 +1,19 @@
+services:
+  vaultcontactos:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: vaultcontactos
+    ports:
+      - "8080:8080"
+    environment:
+      ASPNETCORE_ENVIRONMENT: Docker
+      ASPNETCORE_URLS: http://+:8080
+      ConnectionStrings__DefaultConnection: Data Source=/app/data/contactos.db
+    volumes:
+      - vaultcontactos_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  vaultcontactos_data:
+    name: vaultcontactos_data

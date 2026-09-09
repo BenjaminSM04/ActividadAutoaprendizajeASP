@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - VaultContactos</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-primary">
+            <div class="container">
+                <a class="navbar-brand fw-semibold" asp-controller="Contactos" asp-action="Index">
+                    VaultContactos
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarPrincipal"
+                        aria-controls="navbarPrincipal" aria-expanded="false" aria-label="Abrir navegación">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarPrincipal">
+                    <div class="navbar-nav ms-auto">
+                        <a class="nav-link text-white" asp-controller="Contactos" asp-action="Index">Contactos</a>
+                        <a class="nav-link text-white" asp-controller="Contactos" asp-action="Create">Nuevo contacto</a>
+                        <a class="nav-link text-white" href="/swagger">Swagger API</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-4" role="main">
+        @RenderBody()
+    </main>
+
+    <footer class="border-top py-3 mt-auto text-muted">
+        <div class="container">VaultContactos - Agenda personal</div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

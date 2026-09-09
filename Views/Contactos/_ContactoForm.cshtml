@@ -1,0 +1,30 @@
+@model Contacto
+
+<div asp-validation-summary="ModelOnly" class="validation-summary"></div>
+<div class="row g-4">
+    <div class="col-md-6">
+        <label asp-for="Nombre" class="form-label"></label>
+        <input asp-for="Nombre" class="form-control" placeholder="Ej. Benjamin" autocomplete="given-name" />
+        <span asp-validation-for="Nombre" class="field-validation"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Apellido" class="form-label"></label>
+        <input asp-for="Apellido" class="form-control" placeholder="Ej. Saenz" autocomplete="family-name" />
+        <span asp-validation-for="Apellido" class="field-validation"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Telefono" class="form-label"></label>
+        <input asp-for="Telefono" class="form-control" placeholder="Ej. +591 71234567" autocomplete="tel" />
+        <span asp-validation-for="Telefono" class="field-validation"></span>
+    </div>
+    <div class="col-md-6">
+        <label asp-for="Correo" class="form-label"></label>
+        <input asp-for="Correo" class="form-control" placeholder="nombre@empresa.com" autocomplete="email" />
+        <span asp-validation-for="Correo" class="field-validation"></span>
+    </div>
+    <div class="col-12">
+        <label asp-for="Empresa" class="form-label"></label>
+        <input asp-for="Empresa" class="form-control" placeholder="Ej. Nova Digital" autocomplete="organization" />
+        <span asp-validation-for="Empresa" class="field-validation"></span>
+    </div>
+</div>

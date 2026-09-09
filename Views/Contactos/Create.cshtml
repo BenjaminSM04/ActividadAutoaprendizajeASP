@@ -1,0 +1,25 @@
+@model Contacto
+@{
+    ViewData["Title"] = "Nuevo contacto";
+}
+
+<div class="content-width">
+    <h1 class="h3">Nuevo contacto</h1>
+    <p class="text-muted">Completa los datos del contacto.</p>
+
+    <div class="card">
+        <div class="card-body">
+            <form asp-action="Create" method="post">
+                <partial name="_ContactoForm" model="Model" />
+                <div class="d-flex justify-content-end gap-2 mt-4">
+                    <a class="btn btn-outline-secondary" asp-action="Index">Cancelar</a>
+                    <button class="btn btn-primary" type="submit">Guardar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
